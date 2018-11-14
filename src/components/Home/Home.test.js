@@ -26,17 +26,17 @@ const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 test('renders without error', () => {
   const wrapper = setup();
   const homeComponent = findByTestAttr(wrapper, 'component-home');
-  expect(homeComponent.length).toBe(1);
+  expect(homeComponent).toHaveLength(1);
 });
 test('renders increment button', () => {
   const wrapper = setup();
   const button = findByTestAttr(wrapper, 'increment-button');
-  expect(button.length).toBe(1);
+  expect(button).toHaveLength(1);
 });
 test('renders counter display', () => {
   const wrapper = setup();
   const counterDisplay = findByTestAttr(wrapper, 'counter-display');
-  expect(counterDisplay.length).toBe(1);
+  expect(counterDisplay).toHaveLength(1);
 });
 test('counter starts a 0', () => {
   const wrapper = setup();
