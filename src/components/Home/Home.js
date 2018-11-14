@@ -1,13 +1,46 @@
-import React from 'react';
-import logo from '../../images/logo.svg';
-import { app, logoContainer, logoStyle, title } from './home.scss';
+import React, { Component } from 'react';
+// import logo from '../../images/logo.svg';
+// import { app, logoContainer } from './home.scss';
 
-export default () => (
-  <div className={app}>
-    <div className={logoContainer}>
-      <img className={logoStyle} src={logo} alt="" />
-      <h1 className={title}>Webpack React Boilerplate</h1>
-      <h1 className={title}>Edit ./components and save to reload.</h1>
+export default class Home extends Component {
+  state = {
+    counter: 0,
+    error: '',
+  };
+
+  handleIncrementClick = () =>
+    this.setState(prevState => ({ counter: prevState.counter + 1, error: '' }));
+
+  handleDecrementClick = () =>
+    this.setState(prevState => {
+      const counter = prevState.counter - 1;
+      return counter < 0
+        ? { counter: 0, error: "The counter can't go below 0!" }
+        : { counter };
+    });
+
+  render = () => (
+    <div data-test="component-home">
+      <h1 data-test="counter-display">
+        The counter is currently {this.state.counter}
+      </h1>
+      {this.state.error && (
+        <div data-test="counter-error">{this.state.error}</div>
+      )}
+      <button
+        data-test="increment-button"
+        onClick={this.handleIncrementClick}
+        type="button"
+      >
+        Increment counter
+      </button>
+      <button
+        data-test="decrement-button"
+        onClick={this.handleDecrementClick}
+        type="button"
+      >
+        Decrement counter
+      </button>
     </div>
-  </div>
-);
+  );
+}
