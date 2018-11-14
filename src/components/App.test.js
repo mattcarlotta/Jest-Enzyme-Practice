@@ -3,14 +3,10 @@ import { mount } from 'enzyme';
 
 import App from './App';
 
-describe('<App />', () => {
+describe('App component', () => {
   const wrap = mount(<App />);
 
-  it('renders', () => {
+  it('renders without errors', () => {
     expect(wrap.find(App).exists()).toBe(true);
   });
-
-  // it('contains HelloWorld component', () => {
-  //   expect(wrap.find(HelloWorld).exists()).toBe(true);
-  // });
 });
