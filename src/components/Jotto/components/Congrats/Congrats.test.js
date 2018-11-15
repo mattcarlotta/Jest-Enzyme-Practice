@@ -24,6 +24,6 @@ describe('Congrats component', () => {
     expect(message.text().length).not.toBe(0);
   });
   it('does not not throw PropType warnings', () => {
-    checkProps(congratsComponent, defaultProps);
+    checkProps(Congrats, defaultProps);
   });
 });
