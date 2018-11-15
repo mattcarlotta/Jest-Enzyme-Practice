@@ -4,7 +4,7 @@ import { IndexRoute, Route } from 'react-router';
 import App from '../components/App';
 import Home from '../components/Home/Home';
 import Counter from '../components/Counter/Counter';
-import Jotto from '../component/Jotto/Jotto';
+import Jotto from '../components/Jotto/App';
 import NotFound from '../components/NotFound/NotFound';
 
 export default (
