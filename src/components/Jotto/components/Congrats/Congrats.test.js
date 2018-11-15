@@ -13,10 +13,10 @@ describe('Congrats component', () => {
     congratsComponent = findByTestAttr(wrapper, 'component-congrats');
   });
   it('renders without error', () => {
-    expect(congratsComponent).toHaveLength(1);
+    expect(congratsComponent).toHaveLength(0);
   });
   it('renders no text when success prop is false', () => {
-    expect(congratsComponent.text()).toBe('');
+    expect(wrapper.type()).toBeNull();
   });
   it('renders congrats message when success prop is true', () => {
     wrapper = setup(Congrats, { success: true });

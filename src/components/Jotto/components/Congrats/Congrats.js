@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
  * @param {string} success - React string prop
  * @returns {JSX.Element} - Rendered component (or null)
  */
-
 const Congrats = ({ success }) =>
   success ? (
     <div data-test="component-congrats" className="alert alert-success">
@@ -14,9 +13,7 @@ const Congrats = ({ success }) =>
         Congratulations! You guessed the word!
       </span>
     </div>
-  ) : (
-    <div data-test="component-congrats" />
-  );
+  ) : null;
 
 export default Congrats;
 
