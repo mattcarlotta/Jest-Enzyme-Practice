@@ -1,4 +1,4 @@
-import { checkProps, setup, findByTestAttr } from '../../../../tests/utils';
+import { checkProps, setup, findByTestAttr } from '../../tests/utils';
 import Congrats from './Congrats';
 
 const defaultProps = {

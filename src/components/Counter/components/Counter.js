@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Home extends Component {
   state = {
@@ -39,6 +40,9 @@ export default class Home extends Component {
       >
         Decrement counter
       </button>
+      <div>
+        <Link to="/">Home</Link>
+      </div>
     </div>
   );
 }
