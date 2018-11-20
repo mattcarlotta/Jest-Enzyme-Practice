@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { counterError } from './counter.scss';
 
 export default class Home extends Component {
   state = {
@@ -23,26 +23,26 @@ export default class Home extends Component {
       <h1 data-test="counter-display">
         The counter is currently {this.state.counter}
       </h1>
-      {this.state.error && (
-        <div data-test="counter-error">{this.state.error}</div>
-      )}
+      <div data-test="counter-error" className={counterError}>
+        {this.state.error}
+      </div>
       <button
         data-test="increment-button"
+        className="uk-button uk-button-primary"
         onClick={this.handleIncrementClick}
         type="button"
+        style={{ marginRight: 20 }}
       >
         Increment counter
       </button>
       <button
         data-test="decrement-button"
+        className="uk-button uk-button-danger"
         onClick={this.handleDecrementClick}
         type="button"
       >
         Decrement counter
       </button>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
     </div>
   );
 }

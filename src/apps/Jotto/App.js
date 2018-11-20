@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Congrats from './components/Congrats/Congrats';
-import GuessedWords from './components/GuessedWords/GuessedWords';
-import GuessInput from './components/Input/Input';
+import GuessedWords from './containers/GuessedWords/GuessedWords';
+import GuessInput from './containers/Input/Input';
 import { getSecretWord } from './actions';
 import { spoiler } from './App.scss';
 
@@ -11,8 +11,7 @@ export class Jotto extends PureComponent {
   componentDidMount = () => this.props.getSecretWord();
 
   render = () => (
-    <div className="container">
-      <h1>Jotto</h1>
+    <div>
       <h1>
         The secret word is{' '}
         <span className={spoiler}>{this.props.secretWord}</span>

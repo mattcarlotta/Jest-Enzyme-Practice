@@ -23,6 +23,7 @@ describe('GuessedWords component', () => {
   beforeEach(() => {
     wrapper = setup(GuessedWords, defaultProps);
     guessedWordsComponent = findByTestAttr(wrapper, 'component-guessed-words');
+    console.log(wrapper.debug());
   });
 
   it('does not not throw PropType warnings', () => {

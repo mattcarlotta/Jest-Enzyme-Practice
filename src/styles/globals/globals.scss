@@ -37,3 +37,9 @@
   font-weight: normal;
   src: url('../assets/fonts/Poppins-Light.ttf') format('truetype');
 }
+
+$global-font-family: 'Poppins-Light', sans-serif;
+
+@import 'uikit/src/scss/variables-theme.scss';
+@import 'uikit/src/scss/mixins-theme.scss';
+@import 'uikit/src/scss/uikit-theme.scss';

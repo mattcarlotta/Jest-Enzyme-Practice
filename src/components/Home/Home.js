@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { title } from './home.scss';
 
 const Home = () => (
   <div data-test="component-home">
-    <Link to="/counter">Counter Component</Link>
-    <br />
-    <Link to="/jotto">Jotto Game</Link>
+    <div className={title}>
+      <h1>Counter Component</h1>
+      <p>A simple application to increase a counter from 0</p>
+    </div>
+    <div className={title}>
+      <h1>Jotto</h1>
+      <p>A guessing word game</p>
+    </div>
   </div>
 );
 
