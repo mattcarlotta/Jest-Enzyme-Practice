@@ -4,6 +4,9 @@ import { link, navContainer } from './Header.scss';
 
 export default () => (
   <nav className={navContainer}>
+    <Link className={link} to="/">
+      Home
+    </Link>
     <Link className={link} to="/counter">
       Counter
     </Link>
