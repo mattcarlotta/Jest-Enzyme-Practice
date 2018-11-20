@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { guessWord } from '../../actions';
+import { guessWord, getSecretWord } from '../../actions';
+import { inputContainer } from './Input.scss';
 
 export class Input extends Component {
   state = {
@@ -19,6 +20,8 @@ export class Input extends Component {
     });
   };
 
+  handleResetClick = () => this.props.getSecretWord();
+
   render = () =>
     !this.props.success ? (
       <form
@@ -26,33 +29,47 @@ export class Input extends Component {
         data-test="component-input"
         className=""
       >
-        <input
-          data-test="input-box"
-          className="mb-2 mx-sm-3"
-          type="text"
-          placeholder="Enter Guess"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
+        <div className={inputContainer}>
+          <input
+            data-test="input-box"
+            className="uk-input"
+            type="text"
+            placeholder="Enter Guess"
+            value={this.state.value}
+            onChange={this.handleChange}
+            style={{ width: 500 }}
+          />
+        </div>
         <button
           data-test="submit-button"
-          className="btn btn-primary mb-2"
+          className="uk-button uk-button-primary"
           type="submit"
+          style={{ marginRight: 20 }}
         >
           Submit
         </button>
       </form>
-    ) : null;
+    ) : (
+      <button
+        data-test="reset-button"
+        className="uk-button uk-button-danger"
+        type="button"
+        onClick={this.handleResetClick}
+      >
+        Reset
+      </button>
+    );
 }
 
 export default connect(
   state => ({
     success: state.success,
   }),
-  { guessWord },
+  { guessWord, getSecretWord },
 )(Input);
 
 Input.propTypes = {
   success: PropTypes.bool.isRequired,
   guessWord: PropTypes.func.isRequired,
+  getSecretWord: PropTypes.func.isRequired,
 };

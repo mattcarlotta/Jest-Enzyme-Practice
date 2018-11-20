@@ -14,7 +14,9 @@ export class Jotto extends PureComponent {
     <div>
       <h1>
         The secret word is{' '}
-        <span className={spoiler}>{this.props.secretWord}</span>
+        <span className={!this.props.success ? spoiler : null}>
+          {this.props.secretWord}
+        </span>
       </h1>
       <Congrats success={this.props.success} />
       <GuessInput />

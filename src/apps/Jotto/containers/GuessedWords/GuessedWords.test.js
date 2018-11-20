@@ -1,5 +1,5 @@
 import { checkProps, setup, findByTestAttr } from '../../tests/utils';
-import GuessedWords from './GuessedWords';
+import GuessedWords from './GuessedWords.js';
 
 const defaultProps = {
   guessedWords: [{ guessedWord: 'train', letterMatchCount: 3 }],
@@ -23,7 +23,6 @@ describe('GuessedWords component', () => {
   beforeEach(() => {
     wrapper = setup(GuessedWords, defaultProps);
     guessedWordsComponent = findByTestAttr(wrapper, 'component-guessed-words');
-    console.log(wrapper.debug());
   });
 
   it('does not not throw PropType warnings', () => {

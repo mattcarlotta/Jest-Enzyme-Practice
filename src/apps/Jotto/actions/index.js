@@ -29,6 +29,10 @@ export const getSecretWord = () => async dispatch => {
       type: types.SET_SECRET_WORD,
       payload: res.data,
     });
+
+    dispatch({ type: types.RESET_CORRECT_GUESS });
+
+    dispatch({ type: types.RESET_GUESSED_WORDS });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);

@@ -73,6 +73,7 @@ describe('guessWord action dispatch', () => {
       };
       expect(newState).toEqual(expectedState);
     });
+
     it('updates state correctly for successful guess', () => {
       store.dispatch(guessWord(secretWord)); // dispatch guessWord with 'party'
       const newState = store.getState(); // retrieve current state

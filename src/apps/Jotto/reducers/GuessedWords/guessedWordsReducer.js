@@ -11,6 +11,8 @@ export default (state = [], { type, payload }) => {
   switch (type) {
     case types.GUESS_WORD:
       return [...state, payload];
+    case types.RESET_GUESSED_WORDS:
+      return [];
     default:
       return state;
   }

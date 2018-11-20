@@ -2,14 +2,17 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { container } from './GuessedWords.scss';
+import {
+  container,
+  instructionsContainer,
+  tableContainer,
+} from './GuessedWords.scss';
 
 const GuessedWords = ({ guessedWords }) => (
   <div data-test="component-guessed-words" className={container}>
     {!isEmpty(guessedWords) ? (
       <div data-test="guessed-words">
-        <table className="uk-table uk-table-divider">
-          <caption>Guessed Words</caption>
+        <table className={`uk-table uk-table-striped ${tableContainer}`}>
           <thead>
             <tr>
               <th>#</th>
@@ -29,7 +32,9 @@ const GuessedWords = ({ guessedWords }) => (
         </table>
       </div>
     ) : (
-      <span data-test="guess-instructions">Try to guess the secret word!</span>
+      <div className={instructionsContainer} data-test="guess-instructions">
+        Try to guess the secret word!
+      </div>
     )}
   </div>
 );

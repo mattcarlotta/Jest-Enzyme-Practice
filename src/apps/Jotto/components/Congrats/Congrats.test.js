@@ -1,5 +1,5 @@
 import { checkProps, setup, findByTestAttr } from '../../tests/utils';
-import Congrats from './Congrats';
+import Congrats from './Congrats.js';
 
 const defaultProps = {
   success: false,

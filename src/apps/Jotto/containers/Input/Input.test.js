@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { setup, storeFactory, findByTestAttr } from '../../tests/utils';
-import ConnectedInput, { Input } from './Input';
+import ConnectedInput, { Input } from './Input.js';
 
 /**
  * Factory function to create a ShallowWrapper for the ConnectedInput component
@@ -43,8 +43,9 @@ describe('ConnectedInput component', () => {
       wrapper = setupConnectedInput(initialState);
     });
 
-    it('renders null if `success` is true', () => {
-      expect(wrapper.type()).toBeNull();
+    it('renders reset button if `success` is true', () => {
+      const resetButton = findByTestAttr(wrapper, 'reset-button');
+      expect(resetButton).toHaveLength(1);
     });
   });
 
@@ -69,13 +70,26 @@ describe('ConnectedInput component', () => {
 
       expect(guessWordActionProp).toBeInstanceOf(Function);
     });
+
+    it('`getSecretWord` action creator is a function', () => {
+      const {
+        props: { getSecretWord: getSecretWordProp },
+      } = wrapper.instance();
+
+      expect(getSecretWordProp).toBeInstanceOf(Function);
+    });
   });
 });
 
 describe('Input component', () => {
   const initialState = { value: 'train' }; // initial component state
-  const guessWordMock = jest.fn(); // mock redux guessWord action creator
-  const defaultProps = { success: false, guessWord: guessWordMock }; // default component props
+  const guessWordMock = jest.fn(); // mock guessWord action creator
+  const getSecretWordMock = jest.fn(); // mock getSecretWord action creator
+  const defaultProps = {
+    success: false,
+    guessWord: guessWordMock,
+    getSecretWord: getSecretWordMock,
+  }; // default component props
   const fakeEvent = { preventDefault: () => null }; // intercept event function in handleSubmit
 
   let wrapper;
@@ -103,5 +117,13 @@ describe('Input component', () => {
     wrapper.update(); // update wrapper state
     const inputBox = getInputBox(); // get current input value
     expect(inputBox).toBe(''); // expect the input to be empty string
+  });
+
+  it('calls `getSecretWord` on reset button click', () => {
+    wrapper = setup(Input, { ...defaultProps, success: true }, initialState); // initialize component with updated defaultProps and initialState
+    const resetButton = findByTestAttr(wrapper, 'reset-button'); // get reset button
+    resetButton.simulate('click'); // simulate reset click
+    const getSecretWordMockCalls = getSecretWordMock.mock.calls; // get current getSecretWordMock calls state
+    expect(getSecretWordMockCalls).toHaveLength(1); // expect it to be called once
   });
 });
