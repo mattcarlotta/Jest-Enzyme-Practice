@@ -6,10 +6,9 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import App from '../App.js';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk)),
-);
+export const middlewares = applyMiddleware(thunk);
+
+const store = createStore(rootReducer, composeWithDevTools(middlewares));
 
 export default () => (
   <Provider store={store}>
