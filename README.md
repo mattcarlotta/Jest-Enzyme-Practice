@@ -14,11 +14,11 @@ For package dependencies, click <a href="https://github.com/mattcarlotta/Webpack
 
 2 - Run `npm i` to install dependencies.
 
-3 - While at the application's `root` folder, start the `jest` and `enzyme` tests by running `npm run test`.
+3 - While at the application's root folder, start the `jest` and `enzyme` tests by running `npm run test`.
 
 4 - To view the current coverage report, navigate to `coverage/Icov-report/src` and open `index.html` in a browser.
 
-5 - While at the application's `root` folder, start the `webpack-dev-server` by running `npm run dev`.
+5 - While at the application's root folder, start the `webpack-dev-server` by running `npm run dev`.
 
 ## Commands
 
