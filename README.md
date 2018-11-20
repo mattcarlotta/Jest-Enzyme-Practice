@@ -9,7 +9,7 @@ For package dependencies, click <a href="https://github.com/mattcarlotta/Webpack
 1 - Clone the boilerplate repository.
 
 ```
- git clone -b master git@github.com:mattcarlotta/Testing-Practice.git
+ git clone -b master git@github.com:mattcarlotta/Jest-Enzyme-Practice.git
 ```
 
 2 - Run `npm i` to install dependencies.
