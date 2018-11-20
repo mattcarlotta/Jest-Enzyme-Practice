@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Congrats from './components/Congrats/Congrats';
-import GuessedWords from './containers/GuessedWords/GuessedWords';
-import GuessInput from './containers/Input/Input';
+import Congrats from './components/Congrats/Congrats.js';
+import GuessedWords from './containers/GuessedWords/GuessedWords.js';
+import GuessInput from './containers/Input/Input.js';
 import { getSecretWord } from './actions';
 import { spoiler } from './App.scss';
 
