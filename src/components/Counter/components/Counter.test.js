@@ -28,7 +28,7 @@ describe('Counter component', () => {
     expect(homeComponent).toHaveLength(1);
   });
 
-  describe('Counter', () => {
+  describe('Display counter', () => {
     it('exists', () => expect(counterDisplay).toHaveLength(1));
 
     it('starts at 0', () => {

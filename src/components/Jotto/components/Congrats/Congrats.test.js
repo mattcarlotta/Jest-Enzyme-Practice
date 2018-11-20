@@ -12,7 +12,7 @@ describe('Congrats component', () => {
     wrapper = setup(Congrats, defaultProps);
     congratsComponent = findByTestAttr(wrapper, 'component-congrats');
   });
-  it('renders without error', () => {
+  it('renders without errors', () => {
     expect(congratsComponent).toHaveLength(0);
   });
   it('renders no text when success prop is false', () => {

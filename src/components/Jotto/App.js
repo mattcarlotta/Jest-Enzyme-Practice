@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Congrats from './components/Congrats/Congrats';
 import GuessedWords from './components/GuessedWords/GuessedWords';
-import Input from './components/Input/Input';
+import GuessInput from './components/Input/Input';
 import { getSecretWord } from './actions';
+import { spoiler } from './App.scss';
 
-class Jotto extends PureComponent {
+export class Jotto extends PureComponent {
+  componentDidMount = () => this.props.getSecretWord();
+
   render = () => (
     <div className="container">
       <h1>Jotto</h1>
+      <h1>
+        The secret word is{' '}
+        <span className={spoiler}>{this.props.secretWord}</span>
+      </h1>
       <Congrats success={this.props.success} />
-      <Input />
+      <GuessInput />
       <GuessedWords guessedWords={this.props.guessedWords} />
     </div>
   );
@@ -28,10 +35,12 @@ export default connect(
 
 Jotto.propTypes = {
   getSecretWord: PropTypes.func.isRequired,
-  guessedWords: PropTypes.shape({
-    guessedWord: PropTypes.string,
-    letterMatchCount: PropTypes.number,
-  }),
+  guessedWords: PropTypes.arrayOf(
+    PropTypes.shape({
+      guessedWord: PropTypes.string.isRequired,
+      letterMatchCount: PropTypes.number.isRequired,
+    }),
+  ),
   secretWord: PropTypes.string.isRequired,
   success: PropTypes.bool.isRequired,
 };

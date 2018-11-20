@@ -1,11 +1,10 @@
-import axios from 'axios';
 import * as types from '../types';
-import { getLetterMatchCount } from '../helpers';
+import { getLetterMatchCount, fetchSecretWord } from '../helpers';
 
 /**
  * @function guessWord
  * @param {string} gussedWord - Guessed word.
- * @returns {dispatch} - thunk actions.
+ * @returns {dispatch} - with guessed word and conditional correct guess.
  */
 export const guessWord = guessedWord => (dispatch, getState) => {
   const { secretWord } = getState();
@@ -18,14 +17,20 @@ export const guessWord = guessedWord => (dispatch, getState) => {
   if (guessedWord === secretWord) dispatch({ type: types.CORRECT_GUESS });
 };
 
+/**
+ * @function getSecretWord
+ * @returns {dispatch} - with res.data.
+ */
 export const getSecretWord = () => async dispatch => {
   try {
-    const res = await axios.get('http://localhost:5000');
+    const res = await fetchSecretWord();
+
     dispatch({
       type: types.SET_SECRET_WORD,
       payload: res.data,
     });
   } catch (e) {
-    console.log(e); /* eslint-disable-line no-console-error */
+    // eslint-disable-next-line no-console
+    console.log(e);
   }
 };

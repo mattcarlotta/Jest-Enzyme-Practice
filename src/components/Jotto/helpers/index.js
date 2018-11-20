@@ -11,3 +11,14 @@ export const getLetterMatchCount = (guessedWord, secretWord) => {
   return [...secretLetterSet].filter(letter => guessedLetterSet.has(letter))
     .length;
 };
+
+export const secretWords = ['flower', 'party', 'wrench', 'fry', 'baker'];
+
+export const fetchSecretWord = () =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        data: secretWords[Math.floor(Math.random() * secretWords.length)],
+      });
+    }, 300);
+  });

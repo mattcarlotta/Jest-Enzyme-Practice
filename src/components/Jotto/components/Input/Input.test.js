@@ -1,26 +1,25 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { storeFactory, findByTestAttr } from '../../tests/utils';
-import Input from './Input';
+import { setup, storeFactory, findByTestAttr } from '../../tests/utils';
+import ConnectedInput, { Input } from './Input';
 
 /**
- * Factory function to create a ShallowWrapper for the Input component
- * @function setup
+ * Factory function to create a ShallowWrapper for the ConnectedInput component
+ * @function setupConnectedInput
  * @param {object} initialState - initial state for component
  * @returns {ShallowWrapper}
  */
-
-const setup = (initialState = {}) => {
+const setupConnectedInput = (initialState = {}) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Input store={store} />).dive();
+  const wrapper = shallow(<ConnectedInput store={store} />).dive();
   return wrapper;
 };
 
-describe('Input component', () => {
+describe('ConnectedInput component', () => {
   let wrapper;
   let initialState = { success: false };
   beforeEach(() => {
-    wrapper = setup(initialState);
+    wrapper = setupConnectedInput(initialState);
   });
 
   describe('Word has not been guessed', () => {
@@ -41,7 +40,7 @@ describe('Input component', () => {
   describe('Word has been guessed', () => {
     beforeEach(() => {
       initialState = { success: true };
-      wrapper = setup(initialState);
+      wrapper = setupConnectedInput(initialState);
     });
 
     it('renders null if `success` is true', () => {
@@ -52,7 +51,7 @@ describe('Input component', () => {
   describe('Redux props', () => {
     beforeEach(() => {
       initialState = { success: true };
-      wrapper = setup(initialState);
+      wrapper = setupConnectedInput(initialState);
     });
 
     it('has success state as prop', () => {
@@ -70,5 +69,39 @@ describe('Input component', () => {
 
       expect(guessWordActionProp).toBeInstanceOf(Function);
     });
+  });
+});
+
+describe('Input component', () => {
+  const initialState = { value: 'train' }; // initial component state
+  const guessWordMock = jest.fn(); // mock redux guessWord action creator
+  const defaultProps = { success: false, guessWord: guessWordMock }; // default component props
+  const fakeEvent = { preventDefault: () => null }; // intercept event function in handleSubmit
+
+  let wrapper;
+  let componentInput;
+  let getInputBox;
+  beforeEach(() => {
+    wrapper = setup(Input, defaultProps, initialState); // initialize component with defaultProps and initialState
+    componentInput = findByTestAttr(wrapper, 'component-input'); // get form element
+    getInputBox = () => findByTestAttr(wrapper, 'input-box').prop('value'); // get input element's prop value
+  });
+
+  it('contains the correct input value supplied by state', () => {
+    const inputBox = getInputBox(); // get current input DOM element value
+    expect(inputBox).toBe(initialState.value); // expect it to be the same state as initialState ("train")
+  });
+
+  it('calls `guessWord` with the correct input value when submit button is clicked', () => {
+    componentInput.simulate('submit', fakeEvent); // simulate a form submit
+    const guessWordMockCalls = guessWordMock.mock.calls; // get current guessWordMock calls state
+    expect(guessWordMockCalls[0][0]).toBe(initialState.value); // expect it to be called with initialState.value ("train")
+  });
+
+  it('clears input box on submit', () => {
+    componentInput.simulate('submit', fakeEvent); // simulate a form submit
+    wrapper.update(); // update wrapper state
+    const inputBox = getInputBox(); // get current input value
+    expect(inputBox).toBe(''); // expect the input to be empty string
   });
 });

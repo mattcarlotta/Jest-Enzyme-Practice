@@ -3,16 +3,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { guessWord } from '../../actions';
 
-class Input extends Component {
+export class Input extends Component {
+  state = {
+    value: '',
+  };
+
+  handleChange = ({ target: { value } }) => this.setState({ value });
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { value } = this.state;
+    if (!value) return;
+    this.setState({ value: '' }, () => {
+      this.props.guessWord(value);
+    });
+  };
+
   render = () =>
     !this.props.success ? (
-      <form data-test="component-input" className="form-inline">
+      <form
+        onSubmit={this.handleSubmit}
+        data-test="component-input"
+        className=""
+      >
         <input
           data-test="input-box"
           className="mb-2 mx-sm-3"
-          name="word-guess"
           type="text"
           placeholder="Enter Guess"
+          value={this.state.value}
+          onChange={this.handleChange}
         />
         <button
           data-test="submit-button"

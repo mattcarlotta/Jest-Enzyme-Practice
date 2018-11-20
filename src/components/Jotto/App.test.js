@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { storeFactory } from './tests/utils';
-import App from './App.js';
+import { storeFactory, checkProps } from './tests/utils';
+import { getSecretWord } from './actions';
+import App, { Jotto } from './App.js';
 
 /**
  * Factory function to create a ShallowWrapper for the App component
@@ -9,7 +10,6 @@ import App from './App.js';
  * @param {object} initialState - initial state for component
  * @returns {ShallowWrapper}
  */
-
 const setup = (state = {}) => {
   const store = storeFactory(state);
   const wrapper = shallow(<App store={store} />).dive();
@@ -22,7 +22,16 @@ const initialState = {
   success: false,
 };
 
-describe('Jotto App component', () => {
+const defaultProps = {
+  ...initialState,
+  getSecretWord,
+};
+
+describe('App component', () => {
+  it('does not not throw PropType warnings', () => {
+    checkProps(App, defaultProps);
+  });
+
   describe('redux properties', () => {
     let wrapper;
     beforeEach(() => {
@@ -60,12 +69,29 @@ describe('Jotto App component', () => {
       expect(guessedWordsProp).toBe(updatedState.guessedWords);
     });
 
-    it('has access to the `getSecretWord` action creator and is a function', () => {
+    it('has access to the `getSecretWord` action creator', () => {
       const {
         props: { getSecretWord: getSecretWordProp },
       } = wrapper.instance();
 
       expect(getSecretWordProp).toBeInstanceOf(Function);
     });
+  });
+});
+
+describe('Jotto class component', () => {
+  it('runs `getSecretWord` on did mount', () => {
+    const getSecretWordMock = jest.fn();
+
+    // set up getSecretWordMock as a prop
+    const wrapper = shallow(
+      <Jotto getSecretWord={getSecretWordMock} {...initialState} />,
+    );
+
+    // run cDM
+    wrapper.instance().componentDidMount();
+
+    const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
+    expect(getSecretWordCallCount).toBe(1);
   });
 });
