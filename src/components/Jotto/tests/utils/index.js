@@ -6,13 +6,12 @@ import rootReducer from '../../reducers';
 import { middlewares } from '../../root';
 
 /**
- * Create a testing store with imported reducers, middleware and initial state.
+ * Create a testing store with imported reducers, initial state, and middleware(s).
  * globals: rootReducer, middlewares
  * @function storeFactory
  * @param {object} initialState - Initial store state.
- * @returns {store} - redux store
+ * @returns {store} - redux store with
  */
-
 export const storeFactory = initialState =>
   createStore(rootReducer, initialState, middlewares);
 
