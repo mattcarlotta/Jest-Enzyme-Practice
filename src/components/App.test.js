@@ -1,11 +1,11 @@
-import React from 'react';
-import { mount } from 'enzyme';
+import { setup, findByTestAttr } from '../tests/utils';
 import App from './App.js';
 
-describe('App component', () => {
-  const wrapper = mount(<App />);
+describe('Home component', () => {
+  const wrapper = setup(App);
 
   it('renders without errors', () => {
-    expect(wrapper.find(App).exists()).toBe(true);
+    const app = findByTestAttr(wrapper, 'app');
+    expect(app).toHaveLength(1);
   });
 });

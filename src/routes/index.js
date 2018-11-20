@@ -3,8 +3,8 @@ import { IndexRoute, Route } from 'react-router';
 
 import App from '../components/App';
 import Home from '../components/Home/Home';
-import Counter from '../components/Counter/components/Counter';
-import Jotto from '../components/Jotto/root';
+import Counter from '../apps/Counter/components/Counter';
+import Jotto from '../apps/Jotto/root';
 import NotFound from '../components/NotFound/NotFound';
 
 export default (
