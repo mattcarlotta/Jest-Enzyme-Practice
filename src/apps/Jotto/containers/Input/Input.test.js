@@ -27,10 +27,12 @@ describe('ConnectedInput component', () => {
       const componentInput = findByTestAttr(wrapper, 'component-input');
       expect(componentInput).toHaveLength(1);
     });
+
     it('renders an input box', () => {
       const inputBox = findByTestAttr(wrapper, 'input-box');
       expect(inputBox).toHaveLength(1);
     });
+
     it('renders a submit button', () => {
       const submitButton = findByTestAttr(wrapper, 'submit-button');
       expect(submitButton).toHaveLength(1);

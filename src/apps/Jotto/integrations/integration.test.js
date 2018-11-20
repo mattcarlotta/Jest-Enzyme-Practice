@@ -8,9 +8,8 @@ describe('guessWord action dispatch', () => {
   describe('no guessed words', () => {
     let store;
     const initialState = { secretWord };
-    beforeEach(() => {
-      store = storeFactory(initialState);
-    });
+
+    beforeEach(() => (store = storeFactory(initialState)));
 
     it('updates state correctly for unsuccessful guess', () => {
       store.dispatch(guessWord(unsuccessfulGuess)); // dispatch guessWord with 'train'
@@ -52,9 +51,7 @@ describe('guessWord action dispatch', () => {
     const initialState = { guessedWords, secretWord };
 
     let store;
-    beforeEach(() => {
-      store = storeFactory(initialState);
-    });
+    beforeEach(() => (store = storeFactory(initialState)));
 
     it('updates state correctly for unsuccessful guess', () => {
       store.dispatch(guessWord(unsuccessfulGuess)); // dispatch guessWord with 'train'

@@ -6,7 +6,6 @@ import * as types from '../../types';
  * @param {object} action - type and payload to be reduced.
  * @returns {string} - new guessedWords state.
  */
-
 export default (state = '', { type, payload }) => {
   switch (type) {
     case types.SET_SECRET_WORD:
